@@ -3,11 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/drawable/ic_address.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/drawable/ic_blood.xml" value="0.2234375" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/frag_find_blood_donor.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/frag_home.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/frag_no_internet.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/frag_profile.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/header.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/home_activity.xml" value="0.12" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/login_activity.xml" value="0.22" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/nav_header.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/layout/splash_screen.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/BloodDonation/app/src/main/res/menu/main.xml" value="0.20729166666666668" />
+        <entry key="..\:/personalProjects/and/BloodDonation/app/src/main/res/layout/activity_register.xml" value="0.20729166666666668" />
+        <entry key="..\:/personalProjects/and/BloodDonation/app/src/main/res/layout/frag_find_blood_donor.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/drawable/nav_header.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/activity_nav.xml" value="0.1648148148148148" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/home_activity.xml" value="0.17395833333333333" />
-        <entry key="app/src/main/res/layout/login_activity.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/content_nav.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/frag_find_blood_donor.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/frag_find_hospitals.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/frag_home.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/frag_profile.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/home_activity.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/login_activity.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.33" />
         <entry key="app/src/main/res/layout/splash_screen.xml" value="0.2" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.1712820512820513" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.2" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.1734375" />
+        <entry key="app/src/main/res/menu/nav.xml" value="0.15092592592592594" />
       </map>
     </option>
   </component>

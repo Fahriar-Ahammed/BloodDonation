@@ -8,13 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
     <color name="splashScreenBG">#b3e5fc</color>
     <color name="lightBG">#F5F5F5</color>
     <color name="redBG">#F49C8A</color>
+    <color name="redDBG">#D19D93</color>
+    <color name="halkaBlack">#7D7877</color>
     <color name="registerTxt">#FC0F0F</color>
     <color name="fgPassword">#757575</color>
 
 
+    <color name="recyclerBG">#EADADA</color>
+    <color name="lightWhite">#E7E1E1</color>
+    <color name="lightWhiteTwo">#9E9E9E</color>
+    <color name="testColor">#F0F4C3</color>
+<!--    <color name=""></color>-->
 <!--    <color name=""></color>-->
 <!--    <color name=""></color>-->
 <!--    <color name=""></color>-->

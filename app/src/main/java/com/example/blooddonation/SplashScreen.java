@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.blooddonation.Auth.LoginActivity;
+
 public class SplashScreen extends AppCompatActivity {
 
     ImageView ivBlood;
