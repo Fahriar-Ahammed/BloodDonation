@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public ActionBarDrawerToggle toggle;
     public ExtendedFloatingActionButton btnFloatingActionButton;
     String token;
+    // Change from github
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
