@@ -1,6 +1,7 @@
 package com.example.blooddonation.MainFragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +17,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -31,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +52,7 @@ public class fragFindBloodDonor extends Fragment {
     TextInputEditText etPatientName, etPatientDiagnosis, etHospitalName;
     Button btnRegister;
     private ArrayList<String> divisions ,districts ,upazilas;
+    String token;
 
     String requestingBloodGroup;
     String patientName, hospitalName, hospitalLocation;
@@ -120,14 +127,12 @@ public class fragFindBloodDonor extends Fragment {
         districts = new ArrayList<String>();
         upazilas = new ArrayList<String>();
 
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("authToken", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token","");
+
         getDivisionData();
 
-        // Blood Group Spinner
-        ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.blood_group,
-                android.R.layout.simple_spinner_item);
-        bloodGroupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBloodGroup.setAdapter(bloodGroupAdapter);
+        spinnerConfig();
 
         spinnerDivision.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -143,8 +148,6 @@ public class fragFindBloodDonor extends Fragment {
             }
         });
 
-
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,12 +156,90 @@ public class fragFindBloodDonor extends Fragment {
 
 //                emptyValidation();
 
+                bloodRequest();
+
 
             }
         });
 
         return view;
     }
+
+    private void bloodRequest() {
+
+        String tokenTwo;
+        tokenTwo = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmxvb2QuZHJlYW1pdGRldmxvcG1lbnQuY29tXC9wdWJsaWNcL2FwaVwvbG9naW4iLCJpYXQiOjE2NDQwMDQ2NjYsImV4cCI6MTY0NDAwODI2NiwibmJmIjoxNjQ0MDA0NjY2LCJqdGkiOiJyNm5XNmdmVWFzZW5Kcks3Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-1U4ov43DHtCutJg48WA11v8dNmhmwii_OOAYxnC5Y0";
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url = "https://blood.dreamitdevlopment.com/public/api/blood-request/create/?token=" + token;
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "onResponse: @@@@@@@" +response);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+
+                    String status = jsonObject.getString("status");
+
+                    Log.d(TAG, "onResponse:    Status           :     " + status);
+
+                    if (status.equals("success")){
+                        Toast.makeText(mContext, "Request Added", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse:    @@@@@@@@@@@@@      Volly Error : " +error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+
+                String patient_name, patient_diagnosis, blood_group, gender, hospital_name, division, district, upazila;
+
+                patient_name = etPatientName.getText().toString().trim();
+                patient_diagnosis = etPatientDiagnosis.getText().toString().trim();
+                blood_group = spinnerBloodGroup.getText().toString();
+                gender = spinnerGender.getText().toString();
+                hospital_name = etHospitalName.getText().toString().trim();
+                division = spinnerDivision.getText().toString();
+                district = spinnerDistrict.getText().toString();
+                upazila = spinnerUpazila.getText().toString();
+
+
+                Log.d(TAG, "getParams: ............." + patient_name + "......" + patient_diagnosis +  "......" + blood_group + "....." + gender + "......" +
+                        hospital_name + "....." + division + "....." + district + "....." + upazila);
+
+                Map<String, String> params = new HashMap<>();
+                params.put("patient_name",patient_name);
+                params.put("patient_diagnosis",patient_diagnosis);
+                params.put("blood_group",blood_group);
+                params.put("gender",gender);
+                params.put("hospital_name",hospital_name);
+                params.put("division",division);
+                params.put("district",district);
+                params.put("upazila",upazila);
+                return params;
+            }
+
+            @Override
+            public Request<?> setRetryPolicy(RetryPolicy retryPolicy) {
+
+                return super.setRetryPolicy(retryPolicy);
+            }
+        };
+        queue.add(stringRequest);
+    }
+
 
     private void getDivisionData() {
 
@@ -280,6 +361,23 @@ public class fragFindBloodDonor extends Fragment {
             }
         });
         queue.add(stringRequest);
+    }
+
+    private void spinnerConfig() {
+        // Blood Group Spinner
+        ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.blood_group,
+                android.R.layout.simple_spinner_item);
+        bloodGroupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBloodGroup.setAdapter(bloodGroupAdapter);
+
+        // Gender Selector Spinner
+        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.gender,
+                android.R.layout.simple_spinner_item);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGender.setAdapter(genderAdapter);
+
     }
 
 // Empty Validator
