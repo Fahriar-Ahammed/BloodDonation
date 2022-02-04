@@ -158,7 +158,6 @@ public class fragFindBloodDonor extends Fragment {
 
                 bloodRequest();
 
-
             }
         });
 
@@ -239,7 +238,6 @@ public class fragFindBloodDonor extends Fragment {
         };
         queue.add(stringRequest);
     }
-
 
     private void getDivisionData() {
 
