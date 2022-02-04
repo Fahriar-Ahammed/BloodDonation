@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     public Toolbar toolbar;
     public ActionBarDrawerToggle toggle;
     public ExtendedFloatingActionButton btnFloatingActionButton;
-    String token;
+    String token, name, number;
     // Change from github
 
     @Override
@@ -44,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home_activity);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("authToken", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token","");
+        name = sharedPreferences.getString("name", "");
+        number = sharedPreferences.getString("number", "");
 
         drawer = findViewById(R.id.drawer);
         navigation = findViewById(R.id.navigation);
@@ -131,8 +133,11 @@ public class HomeActivity extends AppCompatActivity {
         TextView userName = view.findViewById(R.id.tvUserNameForHeader);
         TextView userEmail = view.findViewById(R.id.tvUserEmailForHeader);
 
-        userName.setText("Shahir Islam");
-        userEmail.setText("lifeofdekisugi@gmail.com");
+//        userName.setText("Shahir Islam");
+//        userEmail.setText("lifeofdekisugi@gmail.com");
+
+        userName.setText(name);
+        userEmail.setText(number);
     }
 
 //    @Override

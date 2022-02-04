@@ -4,31 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splashScreenBG"
+    android:background="@color/splashBG"
     tools:context=".SplashScreen">
 
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
-        android:text="Donate Blood Safe Life."
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivBlood"
-        app:layout_constraintVertical_bias="0.299" />
-
-    <ImageView
-        android:id="@+id/ivBlood"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/blood"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/splashanimation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

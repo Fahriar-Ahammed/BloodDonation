@@ -26,7 +26,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.blooddonation.HomeActivity;
 import com.example.blooddonation.OnlineStatus.CheckNetwork;
-import com.example.blooddonation.OnlineStatus.fragNoInternet;
 import com.example.blooddonation.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -90,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                checkInternet();
+//                checkInternet();
 
                 loginRequest();
 //                nextActivityValidator();
@@ -102,14 +101,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkInternet() {
-
-        if (CheckNetwork.isInternetAvailable(LoginActivity.this)){
-            Toast.makeText(this, "Internet Connection successful", Toast.LENGTH_SHORT).show();
-        }else{
-            getSupportFragmentManager().beginTransaction().add(R.id.loginActivity, new fragNoInternet()).commit();
-        }
-    }
+//    private void checkInternet() {
+//
+//        if (CheckNetwork.isInternetAvailable(LoginActivity.this)){
+//            Toast.makeText(this, "Internet Connection successful", Toast.LENGTH_SHORT).show();
+//        }else{
+//            getSupportFragmentManager().beginTransaction().add(R.id.loginActivity, new fragNoInternet()).commit();
+//        }
+//    }
 
     private void nextActivityValidator() {
 
@@ -138,12 +137,18 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
 
                     String token = jsonObject.getString("access_token");
+                    String name = jsonObject.getString("name");
+                    String number = jsonObject.getString("number");
 
-                    Log.d(TAG, "onResponse:    token           :     " + token);
+                    Log.d(TAG, "onResponse:    Token  : " + token);
+                    Log.d(TAG, "onResponse:    Name   :   " + name);
+                    Log.d(TAG, "onResponse:    Number  :  " + number);
 
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("token", token);
+                    editor.putString("name", name);
+                    editor.putString("number", number);
                     editor.apply();
 
                     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("authToken", Context.MODE_PRIVATE);
