@@ -166,11 +166,11 @@ public class fragFindBloodDonor extends Fragment {
 
     private void bloodRequest() {
 
-        String tokenTwo;
-        tokenTwo = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmxvb2QuZHJlYW1pdGRldmxvcG1lbnQuY29tXC9wdWJsaWNcL2FwaVwvbG9naW4iLCJpYXQiOjE2NDQwMDQ2NjYsImV4cCI6MTY0NDAwODI2NiwibmJmIjoxNjQ0MDA0NjY2LCJqdGkiOiJyNm5XNmdmVWFzZW5Kcks3Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-1U4ov43DHtCutJg48WA11v8dNmhmwii_OOAYxnC5Y0";
+//        String tokenTwo;
+//        tokenTwo = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmxvb2QuZHJlYW1pdGRldmxvcG1lbnQuY29tXC9wdWJsaWNcL2FwaVwvbG9naW4iLCJpYXQiOjE2NDQwMDQ2NjYsImV4cCI6MTY0NDAwODI2NiwibmJmIjoxNjQ0MDA0NjY2LCJqdGkiOiJyNm5XNmdmVWFzZW5Kcks3Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-1U4ov43DHtCutJg48WA11v8dNmhmwii_OOAYxnC5Y0";
 
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url = "https://blood.dreamitdevlopment.com/public/api/blood-request/create/?token=" + token;
+        String url = "https://blood.dreamitdevlopment.com/public/api/blood-request/create?token=" + token;
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
