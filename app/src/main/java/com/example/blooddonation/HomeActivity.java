@@ -16,11 +16,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.blooddonation.Auth.LoginActivity;
 import com.example.blooddonation.MainFragments.fragFindBloodDonor;
-import com.example.blooddonation.MainFragments.fragFindHospitals;
+import com.example.blooddonation.MainFragments.fragRequests;
 import com.example.blooddonation.MainFragments.fragHome;
 import com.example.blooddonation.MainFragments.fragProfile;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -85,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                         Log.d(TAG, "onNavigationItemSelected: @@@@@@@@@@@@@@@                   Find Blood Donor Fragment Clicked");
                         break;
                     case R.id.nav_findHospital:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, new fragFindHospitals()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, new fragRequests()).commit();
                         Log.d(TAG, "onNavigationItemSelected: @@@@@@@@@@@@@@@                   Find Hospitals Fragment Clicked");
                         break;
                     case R.id.nav_profile:

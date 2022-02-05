@@ -27,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.blooddonation.HomeActivity;
@@ -35,6 +36,7 @@ import com.example.blooddonation.dataModel.bloodRequestModel;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -114,15 +116,64 @@ public class fragHome extends Fragment {
 
         List<bloodRequestModel> myDataOnList = new ArrayList<>();
 
-        HomeActivity activity = new HomeActivity();
-
 
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("authToken", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token","");
         Log.d(TAG, "onCreateView: @@@@@@@@@@@@@@                         Token"+token);
 
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url ="https://blood.dreamitdevlopment.com/public/api/blood-request/all";
+        bloodRequestModel bloodRequestModel = new bloodRequestModel();
 
-        RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i<=response.length(); i++){
+                    try {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        Log.d(TAG, "onResponse: @@@@@@@@@@@          JsonObject Response : " + jsonObject);
+
+                        bloodRequestModel.setUser_id(jsonObject.getInt("user_id"));
+                        bloodRequestModel.setPatient_name(jsonObject.getString("patient_name"));
+                        bloodRequestModel.setPatient_diagnosis(jsonObject.getString("patient_diagnosis"));
+                        bloodRequestModel.setBlood_group(jsonObject.getString("blood_group"));
+                        bloodRequestModel.setHospital_name(jsonObject.getString("hospital_name"));
+                        bloodRequestModel.setGender(jsonObject.getString("gender"));
+                        bloodRequestModel.setDivision(jsonObject.getString("division"));
+                        bloodRequestModel.setDistrict(jsonObject.getString("district"));
+                        bloodRequestModel.setUpazila(jsonObject.getString("upazila"));
+
+                        myDataOnList.add(bloodRequestModel);
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, myDataOnList);
+                        listView.setAdapter(arrayAdapter);
+
+                    } catch (JSONException e) {
+                        Log.d(TAG, "onResponse: @@@@@@@@@@@@@@@              JsonException " + e);
+                        e.printStackTrace();
+                    } {
+
+                    }
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: @@@@@@@@@@@@@@@@@@@@@@@@           Error " + error);
+            }
+        });
+
+        queue.add(jsonArrayRequest);
+
+        return view;
+    }
+
+}
+
+// Single Request View API
+        /*
+                RequestQueue queue = Volley.newRequestQueue(view.getContext());
         String url ="https://blood.dreamitdevlopment.com/public/api/blood-request/view/1";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -162,61 +213,9 @@ public class fragHome extends Fragment {
         });
 
         queue.add(jsonObjectRequest);
+         */
 
-
-
-
-
-
-
-
-
-// Test Code
-/*
-        //String url ="https://dreamit.ishoppis.com/public/api/profile/list-boost/?token="+token;
-        String url = "https://blood.dreamitdevlopment.com/public/api/blood-request/view/1";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-
-                    Log.d(TAG, "onResponse: @@@@@@@@@@@@@@@@ Response          " + response);
-
-                    for (int i = 0; i<=100; i++){
-
-                        bloodRequestModel bloodRequestModel = new bloodRequestModel();
-
-                        //JSONObject jsonObject = response.getJSONObject(i);
-
-//                        bloodRequestModel.setUser_id(jsonObject.getInt("user_id"));
-//                        bloodRequestModel.setPatient_name(jsonObject.getString("patient_name"));
-//                        bloodRequestModel.setPatient_diagnosis(jsonObject.getString("patient_diagnosis"));
-//                        bloodRequestModel.setBlood_group(jsonObject.getString("blood_group"));
-//                        bloodRequestModel.setHospital_name(jsonObject.getString("hospital_name"));
-//                        bloodRequestModel.setGender(jsonObject.getString("gender"));
-//                        bloodRequestModel.setDivision(jsonObject.getString("division"));
-//                        bloodRequestModel.setDistrict(jsonObject.getString("district"));
-//                        bloodRequestModel.setUpazila(jsonObject.getString("upazila"));
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        queue.add(jsonObjectRequest);
- */
-
-        // FloatingAction Button
+// FloatingAction Button
         /*
                 btnFloatingButton = view.findViewById(R.id.btnFloatingButton);
 
@@ -240,7 +239,3 @@ public class fragHome extends Fragment {
             }
         });
          */
-        return view;
-    }
-
-}

@@ -12,10 +12,10 @@ import com.example.blooddonation.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragFindHospitals#newInstance} factory method to
+ * Use the {@link fragRequests#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragFindHospitals extends Fragment {
+public class fragRequests extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class fragFindHospitals extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragFindHospitals() {
+    public fragRequests() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class fragFindHospitals extends Fragment {
      * @return A new instance of fragment fragFindHospitals.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragFindHospitals newInstance(String param1, String param2) {
-        fragFindHospitals fragment = new fragFindHospitals();
+    public static fragRequests newInstance(String param1, String param2) {
+        fragRequests fragment = new fragRequests();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class fragFindHospitals extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frag_find_hospitals, container, false);
+        return inflater.inflate(R.layout.frag_requests, container, false);
     }
 }

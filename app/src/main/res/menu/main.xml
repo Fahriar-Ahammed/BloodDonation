@@ -8,38 +8,38 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="হোম" />
 
         <item
             android:id="@+id/nav_findBloodDonor"
             android:icon="@drawable/ic_blood"
-            android:title="Find Blood Donor" />
+            android:title="রক্ত খুজুন" />
 
         <item
             android:id="@+id/nav_findHospital"
             android:icon="@drawable/ic_hospital"
-            android:title="Find Nearest Hospital" />
+            android:title="আপনার অনুরোধ গুলো" />
 
 
     </group>
 
-    <item android:title="Information">
+    <item android:title="তথ্যাবলি">
 
         <menu>
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_identity"
-                android:title="Profile" />
+                android:title="প্রফাইল"/>
 
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_login_logout"
-                android:title="Logout" />
+                android:title="লগআউট"/>
 
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_share"
-                android:title="Share" />
+                android:title="শেয়ার"/>
         </menu>
 
     </item>
